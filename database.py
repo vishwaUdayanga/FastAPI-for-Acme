@@ -1,10 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+import os
+from dotenv import load_dotenv
 
-URL_DATABASE = "postgresql://default:3fncgklswo1K@ep-tiny-block-a42howkm-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
 
-engine = create_engine(URL_DATABASE)
+load_dotenv() 
+engine = create_engine(os.getenv('POSTGRES_URL'))
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
